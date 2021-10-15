@@ -29,13 +29,19 @@ jobs:
       - run: sudo chmod -R 777 /var/lib/docker
       - run: sudo ls /var/lib/docker/image
       
-      - uses: aws-actions/configure-aws-credentials@v1
-        with:
-         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID  }}
-         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY  }}
-         aws-region: us-east-1
-         instance-ids: ${{ secrets.INSTANCE_ID  }}
-      - run: docker run -p 80:80 simple-nginx
+      - uses: easingthemes/ssh-deploy@v2.1.5
+        env:
+         SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+         SOURCE: "./"
+         REMOTE_HOST: "ec2-3-91-97-75.compute-1.amazonaws.com"
+         REMOTE_USER: "ubuntu"
+         TARGET: "/home/ubuntu"
+      - run: docker run -p 80:80 simple-nginx 
+       #  aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID  }}
+       #  aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY  }}
+       #  aws-region: us-east-1
+      #   instance-ids: ${{ secrets.INSTANCE_ID  }}
+   #   - run: docker run -p 80:80 simple-nginx
         
   
       
