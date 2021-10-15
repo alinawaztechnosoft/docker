@@ -29,12 +29,13 @@ jobs:
       - run: sudo chmod -R 777 /var/lib/docker
       - run: sudo ls /var/lib/docker/image
       
-  #    - uses: aws-actions/configure-aws-credentials@v1
-   #     with:
-   # aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID  }}
-   # aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY  }}
-   # aws-region: us-east-1
-   # instance-ids: ${{ secrets.INSTANCE_ID  }}
+      - uses: aws-actions/configure-aws-credentials@v1
+        with:
+         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID  }}
+         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY  }}
+         aws-region: us-east-1
+         instance-ids: ${{ secrets.INSTANCE_ID  }}
+        command: docker run -p 80:80 simple-nginx
         
   
       
