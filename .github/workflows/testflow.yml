@@ -27,7 +27,7 @@ jobs:
       - uses: docker/build-push-action@v2
       - run: docker build -t simple-nginx .
       - run: sudo chmod -R 777 /var/lib/docker
-      - run: sudo ls /var/lib/docker
+      - run: sudo ls /var/lib/docker/image
       
   #    - uses: aws-actions/configure-aws-credentials@v1
    #     with:
