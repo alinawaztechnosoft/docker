@@ -26,8 +26,8 @@ jobs:
       #- run: sudo apt install docker-ce
       - uses: docker/build-push-action@v2
       - run: docker build -t simple-nginx .
-      - run: chmod -R 777 /var/lib/docker
-      - run: ls /var/lib/docker
+      - run: sudo chmod -R 777 /var/lib/docker
+      - run: sudo ls /var/lib/docker
       
   #    - uses: aws-actions/configure-aws-credentials@v1
    #     with:
